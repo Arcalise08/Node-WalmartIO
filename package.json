@@ -1,0 +1,21 @@
+{
+  "name": "WalmartAPI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "API.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node API.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "canonicalize": "^1.0.5",
+    "crypto": "^1.0.1",
+    "hashmap": "^2.4.0",
+    "node-fetch": "^2.6.1",
+    "node-rsa": "^1.1.1"
+  }
+}
