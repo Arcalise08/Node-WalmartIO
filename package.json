@@ -1,21 +1,16 @@
 {
-  "name": "WalmartAPI",
-  "version": "1.0.0",
-  "description": "",
-  "main": "API.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node API.js"
-  },
+  "name": "node-walmartio",
+  "version": "0.1.0",
+  "description": "Generate Walmart Request Quick and Easy!",
+  "main": "src/index.js",
+  "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "Arcalise08 <Arcalise08@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
-    "canonicalize": "^1.0.5",
+    "app-root-path": "^3.0.0",
     "crypto": "^1.0.1",
-    "hashmap": "^2.4.0",
-    "node-fetch": "^2.6.1",
-    "node-rsa": "^1.1.1"
-  }
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {}
 }
