@@ -1,15 +1,13 @@
 {
-  "name": "node-walmartio",
-  "version": "0.1.0",
+  "name": "walmartio-js",
+  "version": "0.1.93",
   "description": "Generate Walmart Request Quick and Easy!",
-  "main": "src/index.js",
+  "main": "src/src.js",
   "scripts": {},
   "keywords": [],
   "author": "Arcalise08 <Arcalise08@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "app-root-path": "^3.0.0",
-    "crypto": "^1.0.1",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {}

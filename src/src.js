@@ -1,52 +1,40 @@
 const fetch = require('node-fetch');
-const crypto = require("crypto")
-const appRoot = require('app-root-path');
+const crypto = require('crypto');
 
 
-const timeStamp = Date.now()
+let details = {
+    consumerId: "",
+    keyVersion:"",
+    privateKey: ``,
+    passPhrase:""
+}
+
+
 
 const generateWalmartHeaders = () => {
-    console.log(appRoot.path)
-    let json = false;
-    try {
-        json = require(`${appRoot.path}/src/env.json`);
-    }
-    catch {
-        console.error("env.json was not found within the src directory. We cannot continue without this file.")
-        return false;
-    }
+    const {consumerId, keyVersion, privateKey, passPhrase} = details;
 
-    const consumerId = json.consumerId;
-    const keyVer = json.keyVersion;
-    const privateKey = json.privateKey;
-    const passPhrase = json.passphrase;
-
-    if (!consumerId.length > 0 || !keyVer.length > 0 || !privateKey.length > 0 ) {
-        console.error("You have not supplied the correct details within the env.js file. Please follow the readme at https://github.com/Arcalise08/Node-WalmartIO.")
+    if (!consumerId.length > 0 || !keyVersion.length > 0 || !privateKey.length > 0 ) {
+        console.error("You have not supplied the correct details. Please follow the readme at https://github.com/Arcalise08/Node-WalmartIO.")
         return false;
     }
     const hashList = {
         "WM_CONSUMER.ID": consumerId,
-        "WM_CONSUMER.INTIMESTAMP": timeStamp,
-        "WM_SEC.KEY_VERSION": keyVer,
+        "WM_CONSUMER.INTIMESTAMP": Date.now().toString(),
+        "WM_SEC.KEY_VERSION": keyVersion,
     };
+
     const sortedHashString = `${hashList["WM_CONSUMER.ID"]}\n${hashList["WM_CONSUMER.INTIMESTAMP"]}\n${hashList["WM_SEC.KEY_VERSION"]}\n`;
     try {
         const sign = crypto.createSign('sha256')
         sign.write(sortedHashString);
         sign.end();
-        const sig = sign.sign(
-            passPhrase ?
-                {
-                    key:privateKey,
-                    passphrase: passPhrase,
-                }
-                :
-                {
-                    key:privateKey,
-                }
-        )
-        const signature_enc = sig.toString('base64');
+        const sig = sign.sign({
+            key:privateKey,
+            passphrase: passPhrase,
+        })
+
+        const signature_enc = sig.toString("base64")
         return {
             "WM_SEC.AUTH_SIGNATURE": signature_enc,
             "WM_CONSUMER.INTIMESTAMP": hashList["WM_CONSUMER.INTIMESTAMP"],
@@ -64,8 +52,8 @@ const generateWalmartHeaders = () => {
 }
 
 
-const WalmartRequest = async (args) => {
-    let {url, query, body, method} = args || {};
+const Request = async (args) => {
+    let {callback, url, query, body, method} = args || {};
     if (!url || !method) {
         console.log("Invalid Request")
         console.log(`Provided request details URL: ${url} & METHOD: ${method}`)
@@ -91,9 +79,19 @@ const WalmartRequest = async (args) => {
     }
 
     const response = await fetch(url, options);
-    const res = await response;
+    const res = await response.json();
 
-    return res;
+    return callback(res);;
 }
 
-module.export = {WalmartRequest}
+
+
+Request({callback: () => {}, url: "https://developer.api.walmart.com/api-proxy/service/affil/product/v2/items?upc=035000521019", method:"GET"})
+
+
+
+module.exports = {
+    async function (callback, url, method, body, query) {
+        return await Request({callback, url, method, body, query})
+    }
+}
