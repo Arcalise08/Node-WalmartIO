@@ -85,11 +85,6 @@ const Request = async (args) => {
 }
 
 
-
-Request({callback: () => {}, url: "https://developer.api.walmart.com/api-proxy/service/affil/product/v2/items?upc=035000521019", method:"GET"})
-
-
-
 module.exports = {
     async function (callback, url, method, body, query) {
         return await Request({callback, url, method, body, query})
