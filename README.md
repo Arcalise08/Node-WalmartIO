@@ -27,7 +27,8 @@ let details = {
     passPhrase:"" <- The passphrase which was used in the generation of the private key
 }
 ```
-This may later be changed to an env.json file in app root. But in order to maintain compatibility with JeringTechs C# Wrapper we are leaving this alone for now.
+When you commit//clone your repo remember that node_modules will be cleaned. This might be seen as an annoyance but it will help ensure you dont accidently make your private key public.
+
 
 # Key Generation
 Theres very little documentation based around key generation for walmart.io
