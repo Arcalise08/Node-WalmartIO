@@ -32,7 +32,7 @@ When you commit//clone your repo remember that node_modules will be cleaned. Thi
 
 # Key Generation
 Theres very little documentation based around key generation for walmart.io
-I suggest following the tutorial [here.]("https://walmart.io/key-tutorial") 
+I suggest following the tutorial [here]("https://walmart.io/key-tutorial") 
 The ubuntu guide is more fool proof then the windows one.
 
 A properly generated Key would look similar to this
