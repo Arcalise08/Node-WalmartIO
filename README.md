@@ -58,7 +58,7 @@ const method = "GET";
 const cb = (res) => {
     console.log(res)
 }
-console.log(walmart(cb, url, method, null, query ));
+walmart(cb, url, method, null, query );
 ```
 
 # Methods
