@@ -32,7 +32,7 @@ When you commit//clone your repo remember that node_modules will be cleaned. Thi
 # Note
 Once you upload your public key onto the walmart dashboard there seems to be some amount of time that must pass before you can use it. If youre getting responses similar to
 ```
-{details: "There is not Public Key for consumer Id : "32423-235325d-3252-23526"}
+{details: "There is no Public Key for consumer Id : "32423-235325d-3252-23526"}
 ```
 That normally means youre good to go, Just need to wait. I'm still not sure the exact timeframe, The key I had was around 5 days old and it seemed to work right off the bat. Whereas the one I generated and uploaded same day still hasnt worked.
 
