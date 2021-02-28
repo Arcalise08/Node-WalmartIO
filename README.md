@@ -6,6 +6,7 @@
 ### Tested on Node
 **v12.18.3**
 ### This Repo is for NODE only DO NOT USE THIS FOR FRONTEND APPLICATIONS
+While technically you could replace the crypto package this repo uses with one that is compatible with the front-end. This is a really bad idea! Private keys should not be put on a front end. They are **PRIVATE** for a reason!
 
 # Installation
 This repo requires additional setup within node_modules
