@@ -32,7 +32,7 @@ When you commit//clone your repo remember that node_modules will be cleaned. Thi
 
 # Key Generation
 Theres very little documentation based around key generation for walmart.io
-I suggest following the tutorial [here]("https://walmart.io/key-tutorial") 
+I suggest following the tutorial https://walmart.io/key-tutorial
 The ubuntu guide is more fool proof then the windows one.
 
 A properly generated Key would look similar to this
@@ -100,9 +100,13 @@ walmart(callback, url, method, body, query)
 ``
 
 **``callback``** <- This is a callback which returns the response of the query. This is included as the first parameter for use with Jering Techs Node Wrapper **REQUIRED**
+
 **``url``** <- The endpoint of the request **REQUIRED**
+
 **``method``** <- The method of the request **REQUIRED**
+
 **``body``** <- The body of the request. Should be **null** for get request.
+
 **``query``**  <- The query of the request, Useful for get request. Although you can also do the query directly in the URL instead of using this.
 
 
