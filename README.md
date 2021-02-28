@@ -33,7 +33,7 @@ npm i node_walmartio
 let details = {
     consumerId: "", <- Find on walmart dashboard after uploading your public key
     keyVersion:"", <- See Above^
-    privateKey: ``, <- You must past the encrypted private key. See below for more information
+    privateKey: ``, <- You must pass the encrypted private key. See below for more information
     passPhrase:"" <- The passphrase which was used in the generation of the private key
 }
 ```
