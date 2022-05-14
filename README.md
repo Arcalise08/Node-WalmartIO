@@ -13,7 +13,7 @@
 
 
 ### Tested on Node
-**v12.18.3**
+**v16.15.0**
 ### This Repo is for NODE only DO NOT USE THIS FOR FRONTEND APPLICATIONS
 While technically you could replace the crypto package this repo uses with one that is compatible with the front-end. This is a really bad idea! Private keys should not be put on a front end. They are **PRIVATE** for a reason!
 
@@ -26,18 +26,17 @@ This repo requires additional setup within node_modules
 npm i node_walmartio
 ```
 
-### Next navigate to /node_modules/node_walmartio/src 
-*You must fill out the details at the top of the page*
+### Next copy/rename .env.example to .env and fill in the variables 
+*You must fill out the variables for this library to work*
 
 ```
-let details = {
-    consumerId: "", <- Find on walmart dashboard after uploading your public key
-    keyVersion:"", <- See Above^
-    privateKey: ``, <- You must pass the encrypted private key. See below for more information
-    passPhrase:"" <- The passphrase which was used in the generation of the private key
-}
+CONSUMER_ID=    <- Find on walmart dashboard after uploading your public key
+KEY_VERSION=    <- See Above^
+PRIVATEY_KEY=   <- You must pass the encrypted private key. See below for more information
+PASS_PHARSE=    <- The passphrase which was used in the generation of the private key
 ```
-When you commit//clone your repo remember that node_modules will be cleaned. This might be seen as an annoyance but it will help ensure you dont accidently make your private key public.
+
+When you commit//clone your repo remember that .env is not tracked for security reasons. This might be seen as an annoyance but it will help ensure you dont accidently make your private key public.
 
 # IMPORTANT
 Once you upload your public key onto the walmart dashboard there seems to be some amount of time that must pass before you can use it. If youre getting responses similar to
@@ -49,25 +48,25 @@ That normally means youre good to go, Just need to wait. I'm still not sure the 
 # Usage
 Here is the basic usage of this repo
 ```
-const walmart = require("node_walmartio");
-const url = "https://developer.api.walmart.com/api-proxy/service/affil/product/v2/items";
+const walmart = require("walmartio-js")
+const url = "https://developer.api.walmart.com/api-proxy/service/affil/product/v2/items"
 const query = "upc=035000521019"
-const method = "GET";
+const method = "GET"
 
 
 const cb = (res) => {
     console.log(res)
 }
-walmart(cb, url, method, null, query );
+walmart.makeRequest(cb, url, query, null, method)
 ```
 
 # Methods
-Currently theres only one method and it is the default export of this repository. This will likely change in the future
+Currently there is only one method "makeRequest". This will likely change in the future
 
 # Parameters
-Currently theres 4 parameters and only three are required. The order in which they are passed is important.
+Currently there are 4 parameters and only three are required. The order in which they are passed is important.
 ``
-walmart(callback, url, method, body, query)
+walmart.makeRequest(callback, url, query, null, method)
 ``
 
 **``callback``** <- This is a callback which returns the response of the query. This is included as the first parameter for use with Jering Techs Node Wrapper **REQUIRED**
@@ -127,6 +126,3 @@ const hashList = {
 ```
 
 Walmart seems like they're undergoing some changes so I don't really expect this to work for too long. If you see issues please feel free to post in the issue or submit PRs.
-
-
-
