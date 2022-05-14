@@ -1,12 +1,13 @@
+require('dotenv/config')
 const fetch = require('node-fetch');
 const crypto = require('crypto');
 
 
 let details = {
-    consumerId: "",
-    keyVersion:"",
-    privateKey: ``,
-    passPhrase:""
+    consumerId: process.env.CONSUMER_ID,
+    keyVersion: process.env.KEY_VERSION,
+    privateKey: process.env.PRIVATEY_KEY,
+    passPhrase: process.env.PASS_PHARSE
 }
 
 
@@ -52,8 +53,7 @@ const generateWalmartHeaders = () => {
 }
 
 
-const Request = async (args) => {
-    let {callback, url, query, body, method} = args || {};
+const Request = async (callback, url, query, body, method) => {
     if (!url || !method) {
         console.log("Invalid Request")
         console.log(`Provided request details URL: ${url} & METHOD: ${method}`)
@@ -86,7 +86,5 @@ const Request = async (args) => {
 
 
 module.exports = {
-    async function (callback, url, method, body, query) {
-        return await Request({callback, url, method, body, query})
-    }
+    makeRequest:Request
 }
